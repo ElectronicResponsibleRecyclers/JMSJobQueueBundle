@@ -18,13 +18,13 @@
 
 namespace JMS\JobQueueBundle\Command;
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 use JMS\JobQueueBundle\Entity\Job;
 use JMS\JobQueueBundle\Entity\Repository\JobManager;
 use JMS\JobQueueBundle\Event\NewOutputEvent;
 use JMS\JobQueueBundle\Event\StateChangeEvent;
 use JMS\JobQueueBundle\Exception\InvalidArgumentException;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -67,7 +67,7 @@ class RunCommand extends Command
     /** @var array */
     private $queueOptions;
 
-    public function __construct(ManagerRegistry $managerRegistry, JobManager $jobManager, EventDispatcherInterface $dispatcher, array $queueOptionsDefault, array $queueOptions)
+    public function __construct(Registry $managerRegistry, JobManager $jobManager, EventDispatcherInterface $dispatcher, array $queueOptionsDefault, array $queueOptions)
     {
         parent::__construct();
 
